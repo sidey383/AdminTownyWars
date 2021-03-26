@@ -1,0 +1,6 @@
+capture:
+  # in ticks
+  time: 2400
+  price: 250
+  #plugin contain ru and en language
+lang: 'ru'

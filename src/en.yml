@@ -1,0 +1,75 @@
+command:
+  list:
+## %wars% - list of command.war and command.battle
+    frame: 
+      - '&e-====='
+      - '%wars%'
+      - '&e-====='
+## %id% - id of war,  %town1% %town2% 
+    war: "&5%id% &8%town1% - %town2%"
+## %id% - id of war,  %attacker% %defender%     
+    battle: "&c%id% &8%attacker% -> %defender%&f"
+  start: '&5the war has begun'
+  end: 'the war is over'
+  wrong:
+    id: 'wrong id'
+    town: 'incorrect town names'
+  dontHaveBattle: 'The battle is not going on'
+  cantFindeWar: 'Couldnt find war'
+  cantCreateWar: 'Failed to create a war'
+## %id% - id of war
+  createWar: 'The war was started. Id %id%'
+## %town1% %town2% 
+  warOver: 'The war between the towns %town1% %town2% is over'
+  dontEnoughPermissions: "You dont have enough rights"
+joinMessage:
+## %enotherTown% the name of the warring town
+  joinOnWar: 'You are at war with %enotherTown%'
+## %attacker% %defender% %town1% %town2% %id%
+  joinOnBattleAttacker: 'You are attacking %defender%'
+  joinOnBattleDefender: 'You are protecting yourself from %attacker%'
+start:
+## %enotherTown% the name of the warring town
+  war: 'The war with %enotherTown% has begun'
+  battleAttacker: 'You are attacking the town %defender%'
+  battleDefender: 'You are defending against the town %attacker%'
+  captureAttacker: 'You have started capturing %X% %Z% chunk. The flag is located at the coordinates %x% %y% %z%'
+  captureDefender: 'Your %X% %Z% chunk has started to be captured. The flag is located at the coordinates %x% %y% %z%'
+end:
+## %enotherTown% the name of the warring town
+  war: 'The war with %enotherTown% is over'
+## %attacker% %defender% 
+## %town1% %town2% 
+## %id% - id of war
+  battleAttacker: '%defender% town attack is over'
+  battleDefender: 'Protection from the town %attacker% is finished'
+## %x %y% %x% - coordinates of block 
+## %X% %Y% - coordinates of chunk 
+## %world% - world
+## %attakcer% %defender%
+  captureAttacker: 'Someone broke the flag on the %x% %y% %z%coordinates. The %X% %Z% chunk capture was canceled.'
+  captureDefender: 'Someone broke the flag on the %x% %y% %z%coordinates. The %X% %Z% chunk capture was canceled.'
+battle:
+  alreadyCaputured: 'This piece is already being captured'
+  cantCaptureCenter: 'You cant capture the central block'
+  cancelTogglePvp: 'You cant switch PVP during battle'
+  cancelLeaveTown: 'You cant leave the city during the battle'
+  cancelUnclaimMessage: 'You cant delete a plot during a battle'
+  cancelTeleport: 'You cant teleport during a battle'
+  cantWithdraw: 'Not enough money'
+townBlock:
+## %x %y% %x% - coordinates of block 
+## %X% %Y% - coordinates of chunk 
+## %world% - world
+## %attakcer% %defender%
+  get: 'You got a plot of %X% %Z%'
+  lose: 'You lose a plot of %X% %Z%'
+help:
+  - '>=========='
+  - '/war declare <town1> <town2> - start the war'
+  - '/war battle start <attacker> <defeder> - start the battle'
+  - '/war battle end <id> - end the battle'
+  - '/war end <id> - end the war'
+  - '/war list - list of wars'
+  - '/war reload - reload configuration'
+  - '>=========='

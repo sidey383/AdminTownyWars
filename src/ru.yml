@@ -1,0 +1,78 @@
+command:
+  list:
+## %wars% - list of command.war and command.battle
+    frame: 
+      - '&e-====='
+      - '%wars%'
+      - '&e-====='
+## %id% - id of war,  %town1% %town2% 
+    war: "&5%id% &8%town1% - %town2%"
+## %id% - id of war,  %attacker% %defender% 
+    battle: "&c%id% &8%attacker% -> %defender%&f"
+  start: '&5Война началась'
+  end: 'Война закончена'
+  wrong:
+    id: 'Неправильный id'
+    town: 'Неправильные имена городов'
+  dontHaveBattle: 'Сражение не идет'
+  cantFindeWar: 'Не удалось найти войну'
+  cantCreateWar: 'Не удалось создать войну'
+## %id% - id of war
+  createWar: 'Война была начата. Id %id%'
+## %town1% %town2% 
+  warOver: 'Война между городами %town1% %town2% закончена'
+  dontEnoughPermissions: "Вам не хватает прав"
+joinMessage:
+
+## %enotherTown% the name of the warring town
+  joinOnWar: 'Вы воюете с %enotherTown%'
+  
+## %attacker% %defender% %town1% %town2% %id%
+  joinOnBattleAttacker: 'Вы нападаете на %defender%'
+  joinOnBattleDefender: 'Вы защищаетесь от %attacker%'
+start:
+## %enotherTown% the name of the warring town
+  war: 'Война с %enotherTown% началась'
+  battleAttacker: 'Вы нападаете на город %defender%'
+  battleDefender: 'Вы защищаетесь от города %attacker%'
+  captureAttacker: 'Вы начали захват чанка %X% %Z%. Флаг стоит на координатах %x% %y% %z%'
+  captureDefender: 'Ваш чанк %X% %Z% начали захватывать. Флаг стоит на коордианатах %x% %y% %z%'
+end:
+## %enotherTown% the name of the warring town
+  war: 'Война с %enotherTown% закончена'
+## %attacker% %defender% 
+## %town1% %town2% 
+## %id% - id of war
+  battleAttacker: 'Атака на город %defender% закончена'
+  battleDefender: 'Защита от города %attacker% закончена'
+  
+## %x %y% %x% - coordinates of block 
+## %X% %Y% - coordinates of chunk 
+## %world% - world
+## %attakcer% %defender%
+  captureAttacker: 'Кто-то сломал флаг на коордитанах %x% %y% %z%. Захват чанка %X% %Z% был отменен.'
+  captureDefender: 'Кто-то сломал флаг на коордитанах %x% %y% %z%. Захват чанка %X% %Z% был отменен.'
+battle:
+  alreadyCaputured: 'Этот кусок уже захватывается'
+  cantCaptureCenter: 'Вы не можете захватить центральный блок'
+  cancelTogglePvp: 'Вы не можете переключить пвп во время битвы'
+  cancelLeaveTown: 'Вы не можете покинуть город во время битвы'
+  cancelUnclaimMessage: 'Вы не можете удалить участок во время битвы'
+  cancelTeleport: 'Вы не можете телепортироваться во время битвы'
+  cantWithdraw: 'Не хватает денег'
+townBlock:
+## %x %y% %x% - coordinates of block 
+## %X% %Y% - coordinates of chunk 
+## %world% - world
+## %attakcer% %defender%
+  get: 'Вы получили участок %X% %Z%'
+  lose: 'Вы потеряли участок %X% %Z%'
+help:
+  - '>=========='
+  - '/war declare <town1> <town2> - начать войну'
+  - '/war battle start <attacker> <defeder> - начать сражение'
+  - '/war battle end <id> - закончить сражение'
+  - '/war end <id> - закончить войну'
+  - '/war list - список войн'
+  - '/war reload - перезагрузить конфигурацию'
+  - '>=========='

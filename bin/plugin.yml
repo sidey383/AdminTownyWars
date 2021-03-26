@@ -1,0 +1,27 @@
+main: ru.sidey383.townyWars.TownyWars
+name: TownyWarsEvent
+version: 0.1
+description: Wars for Towny Advanced
+author: sidey383
+softdepend: [Vault, Towny]
+commands:
+  war:
+    description: War Contorl
+    usage: /war help
+permissions:
+  townywars.command.war.battle:
+    description: use /war battle
+  townywars.command.war.list:
+    description: use /war list
+  townywars.command.war.declare:
+    description: use /war declare
+  townywars.command.war.end:
+    description: use /war end
+  townywars.command.war.help:
+    description: use /war help
+  townywars.leavetown:
+    description: Ignore the ban on leaving the town during the war
+  townywars.toggle.pvp:
+    description: Ignore the ban on toggle pvp in the town during the war
+  townywars.teleport:
+    description: Ignore the ban on teleport during the war
