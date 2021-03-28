@@ -171,6 +171,11 @@ public class ConfigurationLoader {
 			loadClass(clazz);
 	}
 	
+	public ArrayList<Class> getClassesToLoad() 
+	{
+		return classToLoad;
+	}
+	
 	public void reload() 
 	{
 		try {

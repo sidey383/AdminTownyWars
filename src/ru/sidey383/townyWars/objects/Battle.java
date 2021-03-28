@@ -240,7 +240,7 @@ public class Battle implements Listener {
 		} 
 	}
 	
-	@EventHandler
+	@EventHandler(priority =  EventPriority.HIGHEST)
 	public void onRespawn(PlayerRespawnEvent e) 
 	{
 		if(war.getAttacker().hasResident(e.getPlayer().getName())) 

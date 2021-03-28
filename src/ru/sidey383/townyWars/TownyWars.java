@@ -1,6 +1,7 @@
 package ru.sidey383.townyWars;
 
 import java.io.File;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -137,6 +138,7 @@ public class TownyWars extends JavaPlugin {
 
     public void reloadLanguage() 
     {
+    		
 		  String lang = conflodaer.getFileConfiguration().getString("lang");
 		  if(lang == null) 
 		  {
@@ -144,6 +146,14 @@ public class TownyWars extends JavaPlugin {
 			  plugin.getLogger().log(Level.WARNING, "Cant find lang in config. Use default language.", getLogger());
 		  }
 		  try {
+			  if(language != null)
+			  {
+				  @SuppressWarnings("rawtypes")
+				  List<Class> classes = language.getClassesToLoad();
+				  language = new ConfigurationLoader(new File(plugin.getDataFolder(), lang+".yml"), lang+".yml", "lang", getLogger());
+				  for(@SuppressWarnings("rawtypes") Class cl: classes)
+					  language.addClassToLoad(cl);
+			  }
 			  language = new ConfigurationLoader(new File(plugin.getDataFolder(), lang+".yml"), lang+".yml", "lang", getLogger());
 		  }catch (Exception e) {
 			  plugin.getLogger().log(Level.SEVERE, "Cant load Config Loader", e);

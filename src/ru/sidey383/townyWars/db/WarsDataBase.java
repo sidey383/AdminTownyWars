@@ -213,7 +213,6 @@ public class WarsDataBase {
 					toReturn = new Location(Bukkit.getWorld(set.getString("world")), set.getDouble("x"), set.getDouble("y"), set.getDouble("z"), set.getFloat("yaw"), set.getFloat("pitch"));
 				}catch (Exception e) {}
 			}
-			else{}
 			st.close();
 			con.close();
 			
