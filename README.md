@@ -29,5 +29,4 @@
 <tr><th>Ignore the ban on toggle pvp in the town during the war</th><th>townywars.toggle.pvp</th></tr>
 <tr><th>Ignore the ban on leaving the town during the war</th><th>townywars.leavetown</th></tr>
 <tr><th>Ignore the ban on teleport during the war</th><th>townywars.teleport</th></tr>
-townywars.command.war.reload
 </table>
