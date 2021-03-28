@@ -8,7 +8,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.logging.Level;
+
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 
 import ru.sidey383.townyWars.TownyWars;
 import ru.sidey383.townyWars.objects.War;
@@ -30,6 +34,9 @@ public class WarsDataBase {
 		Connection con = getUnsafeConnection();
 		Statement st = con.createStatement();
 		st.execute("CREATE TABLE IF NOT EXISTS wars (id INT PRIMARY KEY, town1 VARCHAR(255), town2 VARCHAR(255), firstIsAttacker INT)");
+		st.close();
+		st = con.createStatement();
+		st.execute("CREATE TABLE IF NOT EXISTS respawn (town VARCHAR(255) PRIMARY KEY, x FLOAT, y FLOAT, z FLOAT, yaw FLOAT, pitch FLOAT, world VARCHAR(255))");
 		st.close();
 		st = con.createStatement();
 		ResultSet set = st.executeQuery("SELECT MAX(id) FROM wars");
@@ -114,6 +121,106 @@ public class WarsDataBase {
 			TownyWars.getLoggerStatic().log(Level.SEVERE, "database exception", e);
 		}
 		return -1;
+	}
+	
+	public void insertLocation(String town, Location loc) 
+	{
+		try(Connection con = getUnsafeConnection())
+		{
+			PreparedStatement st = con.prepareStatement("INSERT INTO  respawn (town , x, y, z, yaw, pitch, world) VALUES (?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+			if(town == null)
+				st.setNull(1, Types.VARCHAR);
+			else
+				st.setString(1, town);
+			st.setDouble(2, loc.getX());
+			st.setDouble(3, loc.getY());
+			st.setDouble(4, loc.getZ());
+			st.setDouble(5, loc.getYaw());
+			st.setDouble(6, loc.getPitch());
+			st.setString(7, loc.getWorld().getName());
+			st.execute();
+			st.close();
+			con.close();
+		}catch (Exception e) {
+			TownyWars.getLoggerStatic().log(Level.SEVERE, "database exception", e);
+		}
+	}
+	
+	public void updateLocation(String town, Location loc) 
+	{
+		try(Connection con = getUnsafeConnection())
+		{
+			PreparedStatement st;
+			if(town != null)
+			{
+				st = con.prepareStatement("UPDATE respawn SET x = ?, y = ?, z = ?, yaw = ?, pitch = ?, world = ? WHERE town = ?", Statement.RETURN_GENERATED_KEYS);
+				st.setString(7, town);
+			}
+			else
+				st = con.prepareStatement("UPDATE respawn SET x = ?, y = ?, z = ?, yaw = ?, pitch = ?, world = ? WHERE town IS NULL", Statement.RETURN_GENERATED_KEYS);
+			st.setDouble(1, loc.getX());
+			st.setDouble(2, loc.getY());
+			st.setDouble(3, loc.getZ());
+			st.setDouble(4, loc.getYaw());
+			st.setDouble(5, loc.getPitch());
+			st.setString(6, loc.getWorld().getName());
+			st.execute();
+			st.close();
+			con.close();
+			
+		}catch (Exception e) {
+			TownyWars.getLoggerStatic().log(Level.SEVERE, "database exception", e);
+		}
+	}
+	
+	public void removeLocation(String town) 
+	{
+		try(Connection con = getUnsafeConnection())
+		{
+			PreparedStatement st;
+			if(town != null)
+			{
+			st = con.prepareStatement("DELETE FROM respawn WHERE town = ?");
+			st.setString(1, town);
+			}
+			else
+				st = con.prepareStatement("DELETE FROM respawn WHERE town IS NUll");
+			st.execute();
+			st.close();
+			con.close();
+			
+		}catch (Exception e) {
+			TownyWars.getLoggerStatic().log(Level.SEVERE, "database exception", e);
+		}
+	}
+	
+	public Location getLocation(String town) 
+	{
+		Location toReturn = null;
+		try(Connection con = getUnsafeConnection())
+		{
+			PreparedStatement st;
+			if(town != null)
+			{
+				st = con.prepareStatement("SELECT * FROM respawn WHERE town = ?");
+				st.setString(1, town);
+			}else
+				st = con.prepareStatement("SELECT * FROM respawn WHERE town IS NULL");
+				ResultSet set = st.executeQuery();
+			if(set.next()) 
+			{
+				try {
+					toReturn = new Location(Bukkit.getWorld(set.getString("world")), set.getDouble("x"), set.getDouble("y"), set.getDouble("z"), set.getFloat("yaw"), set.getFloat("pitch"));
+				}catch (Exception e) {}
+			}
+			else{}
+			st.close();
+			con.close();
+			
+		}catch (Exception e) {
+			TownyWars.getLoggerStatic().log(Level.SEVERE, "database exception", e);
+		}
+		return toReturn;
 	}
 	
 }

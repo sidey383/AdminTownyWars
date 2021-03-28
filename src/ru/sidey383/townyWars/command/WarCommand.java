@@ -21,43 +21,53 @@ public class WarCommand implements CommandExecutor, TabCompleter {
 	private WarEndCommand endCommand = new WarEndCommand();
 	private WarReloadCommand reloadCommand = new WarReloadCommand();
 	private WarHelpCommand helpCommand = new WarHelpCommand();
+	private WarSetRespawnCommand respawnCommand = new WarSetRespawnCommand();
+	private WarRemoveRespawnCommand removeRespawnCommand = new WarRemoveRespawnCommand();
 	
-	private static final List<String> tabComplete = Arrays.asList("list","battle","end","declare","help","reload");
+	private static final List<String> tabComplete = Arrays.asList("list","battle","end","declare","help","reload", "setRespawn", "removeRespawn");
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String name, String[] args) {
 		if(args.length == 0) return false;
-		if(args[0].equals("declare"))
+		if(args[0].toLowerCase().equals("declare"))
 			return declearCommand.onCommand(sender, cmd, name, args);
-		if(args[0].equals("battle"))
+		if(args[0].toLowerCase().equals("battle"))
 			return battleCommand.onCommand(sender, cmd, name, args);
-		if(args[0].equals("list"))
+		if(args[0].toLowerCase().equals("list"))
 			return listCommand.onCommand(sender, cmd, name, args);
-		if(args[0].equals("end"))
+		if(args[0].toLowerCase().equals("end"))
 			return endCommand.onCommand(sender, cmd, name, args);
-		if(args[0].equals("help"))
+		if(args[0].toLowerCase().equals("help"))
 			return helpCommand.onCommand(sender, cmd, name, args);
-		if(args[0].equals("reload"))
+		if(args[0].toLowerCase().equals("reload"))
 			return reloadCommand.onCommand(sender, cmd, name, args);
+		if(args[0].toLowerCase().equals("setrespawn"))
+			return respawnCommand.onCommand(sender, cmd, name, args);
+		if(args[0].toLowerCase().equals("removerespawn"))
+			return removeRespawnCommand.onCommand(sender, cmd, name, args);
 		return false;
 	}
 
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command cmd, String name, String[] args) {
 		if(args.length == 1)
-			return tabComplete;
-		if(args[0].equals("declare"))
+			return selectStrings(tabComplete, args[0]);
+		if(args[0].toLowerCase().equals("declare"))
 			return declearCommand.onTabComplete(sender, cmd, name, args);
-		if(args[0].equals("battle"))
+		if(args[0].toLowerCase().equals("battle"))
 			return battleCommand.onTabComplete(sender, cmd, name, args);
-		if(args[0].equals("list"))
+		if(args[0].toLowerCase().equals("list"))
 			return listCommand.onTabComplete(sender, cmd, name, args);
-		if(args[0].equals("end"))
+		if(args[0].toLowerCase().equals("end"))
 			return endCommand.onTabComplete(sender, cmd, name, args);
-		if(args[0].equals("help"))
+		if(args[0].toLowerCase().equals("help"))
 			return helpCommand.onTabComplete(sender, cmd, name, args);
-		if(args[0].equals("reload"))
+		if(args[0].toLowerCase().equals("reload"))
 			return reloadCommand.onTabComplete(sender, cmd, name, args);
+		if(args[0].toLowerCase().equals("setrespawn"))
+			return respawnCommand.onTabComplete(sender, cmd, name, args);
+		if(args[0].toLowerCase().equals("removerespawn"))
+			return removeRespawnCommand.onTabComplete(sender, cmd, name, args);
 		return null;
 	}
 	

@@ -57,8 +57,10 @@ public class WarDeclareCommand implements CommandExecutor, TabCompleter {
 
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command cmd, String name, String[] args) {
-		if(args.length == 2 && args.length == 3)
-			return WarCommand.selectStrings(WarCommand.getTownNames(), args[args.length - 1]);
+		if(args.length == 2)
+			return WarCommand.selectStrings(WarCommand.getTownNames(), args[1]);
+		if(args.length == 3)
+			return WarCommand.selectStrings(WarCommand.getTownNames(), args[2]);
 		return null;
 	}
 

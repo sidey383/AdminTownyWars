@@ -1,5 +1,5 @@
 main: ru.sidey383.townyWars.TownyWars
-name: TownyWarsEvent
+name: AdminTownyWars
 version: 0.1
 description: Wars for Towny Advanced
 author: sidey383
@@ -21,6 +21,8 @@ permissions:
     description: use /war help
   townywars.command.war.reload:
     description: use /war reload  
+  townywars.command.war.respawn:
+    description: use /war setRespawn and /war removeRespawn
   townywars.leavetown:
     description: Ignore the ban on leaving the town during the war
   townywars.toggle.pvp:

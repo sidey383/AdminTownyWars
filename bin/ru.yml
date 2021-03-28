@@ -1,13 +1,13 @@
 command:
   list:
-## %wars% - list of command.war and command.battle
+    ## %wars% - list of command.war and command.battle
     frame: 
       - '&e-====='
       - '%wars%'
       - '&e-====='
-## %id% - id of war,  %town1% %town2% 
+    ## %id% - id of war,  %town1% %town2% 
     war: "&5%id% &8%town1% - %town2%"
-## %id% - id of war,  %attacker% %defender% 
+    ## %id% - id of war,  %attacker% %defender% 
     battle: "&c%id% &8%attacker% -> %defender%&f"
   start: '&5Война началась'
   end: 'Война закончена'
@@ -15,11 +15,14 @@ command:
     id: 'Неправильный id'
     town: 'Неправильные имена городов'
   dontHaveBattle: 'Сражение не идет'
+  ## %town%
+  setRespawn: 'Установлена точка возрождения дла города %town%'
+  removeRespawn: 'Удалена точка возрождения для %town%'
   cantFindeWar: 'Не удалось найти войну'
   cantCreateWar: 'Не удалось создать войну'
-## %id% - id of war
+  ## %id% - id of war
   createWar: 'Война была начата. Id %id%'
-## %town1% %town2% 
+  ## %town1% %town2% 
   warOver: 'Война между городами %town1% %town2% закончена'
   dontEnoughPermissions: "Вам не хватает прав"
 joinMessage:
@@ -75,4 +78,8 @@ help:
   - '/war end <id> - закончить войну'
   - '/war list - список войн'
   - '/war reload - перезагрузить конфигурацию'
+  - '/war removeRespawn - удалить локацию возрождения по умолчанию'
+  - '/war setRespawn - установить локацию возрождения по умолчанию'
+  - '/war removeRespawn <town> - удалить локацию возрождения для города'
+  - '/war setRespawn <town> - установить локацию возрождения для города'
   - '>=========='

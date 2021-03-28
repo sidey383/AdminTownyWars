@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -13,6 +14,7 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
@@ -27,6 +29,7 @@ import com.palmergames.bukkit.towny.object.TownBlock;
 import com.palmergames.bukkit.towny.object.WorldCoord;
 
 import net.milkbowl.vault.economy.EconomyResponse;
+import ru.sidey383.townyWars.RespawnLocationController;
 import ru.sidey383.townyWars.TownyWars;
 import ru.sidey383.townyWars.configuration.ConfigProperty;
 
@@ -235,6 +238,25 @@ public class Battle implements Listener {
 			War.sendMessage(cancelUnclaimMessage, t);
 			e.setCancelled(true);
 		} 
+	}
+	
+	@EventHandler
+	public void onRespawn(PlayerRespawnEvent e) 
+	{
+		if(war.getAttacker().hasResident(e.getPlayer().getName())) 
+		{
+			Location loc = RespawnLocationController.getInstance().getLoction(war.getAttacker().getName());
+			if(loc != null)
+				e.setRespawnLocation(loc);
+			return;
+		}
+		if(war.getDefender().hasResident(e.getPlayer().getName())) 
+		{
+			Location loc = RespawnLocationController.getInstance().getLoction(war.getDefender().getName());
+			if(loc != null)
+				e.setRespawnLocation(loc);
+			return;
+		}
 	}
 	
 	@EventHandler

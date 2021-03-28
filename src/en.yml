@@ -15,6 +15,9 @@ command:
     id: 'wrong id'
     town: 'incorrect town names'
   dontHaveBattle: 'The battle is not going on'
+  ## %town%
+  setRespawn: 'Spawn point set for %town%'
+  removeRespawn: 'Spawn point remove for %town%'
   cantFindeWar: 'Couldnt find war'
   cantCreateWar: 'Failed to create a war'
 ## %id% - id of war
@@ -72,4 +75,8 @@ help:
   - '/war end <id> - end the war'
   - '/war list - list of wars'
   - '/war reload - reload configuration'
+  - '/war removeRespawn - remove default respawn location'
+  - '/war setRespawn - set default respawn location'
+  - '/war removeRespawn <town> - remove respawn location for town'
+  - '/war setRespawn <town> - set respawn location for town'
   - '>=========='
