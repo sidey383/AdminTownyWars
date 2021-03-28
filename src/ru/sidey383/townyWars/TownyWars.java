@@ -154,7 +154,8 @@ public class TownyWars extends JavaPlugin {
 				  for(@SuppressWarnings("rawtypes") Class cl: classes)
 					  language.addClassToLoad(cl);
 			  }
-			  language = new ConfigurationLoader(new File(plugin.getDataFolder(), lang+".yml"), lang+".yml", "lang", getLogger());
+			  else
+				  language = new ConfigurationLoader(new File(plugin.getDataFolder(), lang+".yml"), lang+".yml", "lang", getLogger());
 		  }catch (Exception e) {
 			  plugin.getLogger().log(Level.SEVERE, "Cant load Config Loader", e);
 			  Bukkit.getPluginManager().disablePlugin(plugin);
